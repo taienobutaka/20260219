@@ -4,6 +4,7 @@ node_modules/
 # Next.js のビルド・キャッシュ（納品物に含めない）
 .next/
 out/
+tsconfig.tsbuildinfo
 
 # 環境変数
 .env

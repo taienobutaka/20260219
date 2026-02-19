@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Serif_JP } from "next/font/google";
 import "@/app/globals.css";
+import { VideoPlaybackProviderWrapper } from "@/components/VideoPlaybackProvider";
 import { cn } from "@/components/utils/cn";
 
 export const metadata: Metadata = {
@@ -24,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={cn(notoSerifJP.variable)}>
-      <body className="font-serifjp antialiased w-full">{children}</body>
+      <body className="font-serifjp antialiased w-full">
+        <VideoPlaybackProviderWrapper>{children}</VideoPlaybackProviderWrapper>
+      </body>
     </html>
   );
 }

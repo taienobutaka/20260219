@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 export interface SmartVideoProps {
   src: string;
@@ -22,30 +22,37 @@ function getWebmPath(originalSrc: string) {
   return `${originalSrc.slice(0, lastDotIndex)}.webm`;
 }
 
-export function SmartVideo({
-  src,
-  className,
-  poster,
-  autoPlay = true,
-  loop = true,
-  muted = true,
-  playsInline = true,
-}: SmartVideoProps) {
-  const webmSrc = getWebmPath(src);
+/** ref で video 要素を親に渡し、再生位置の保存・復元に利用する */
+export const SmartVideo = forwardRef<HTMLVideoElement, SmartVideoProps>(
+  function SmartVideo(
+    {
+      src,
+      className,
+      poster,
+      autoPlay = true,
+      loop = true,
+      muted = true,
+      playsInline = true,
+    },
+    ref,
+  ) {
+    const webmSrc = getWebmPath(src);
 
-  return (
-    <video
-      className={className}
-      poster={poster}
-      autoPlay={autoPlay}
-      loop={loop}
-      muted={muted}
-      playsInline={playsInline}
-    >
-      {/* 先に WebM を提示し、対応していない環境は MP4 へフォールバックする */}
-      <source src={webmSrc} type="video/webm" />
-      <source src={src} type="video/mp4" />
-    </video>
-  );
-}
+    return (
+      <video
+        ref={ref}
+        className={className}
+        poster={poster}
+        autoPlay={autoPlay}
+        loop={loop}
+        muted={muted}
+        playsInline={playsInline}
+      >
+        {/* 先に WebM を提示し、対応していない環境は MP4 へフォールバックする */}
+        <source src={webmSrc} type="video/webm" />
+        <source src={src} type="video/mp4" />
+      </video>
+    );
+  },
+);
 
