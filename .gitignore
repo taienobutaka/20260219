@@ -1,0 +1,11 @@
+# Dependencies and build output (納品物に含めない)
+delivery/node_modules/
+delivery/.next/
+delivery/out/
+
+# Env and misc
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log

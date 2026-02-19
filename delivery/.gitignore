@@ -1,0 +1,16 @@
+# 依存関係（納品物に含めない）
+node_modules/
+
+# Next.js のビルド・キャッシュ（納品物に含めない）
+.next/
+out/
+
+# 環境変数
+.env
+.env.*
+!.env.example
+
+# ログ等
+*.log
+npm-debug.log*
+.DS_Store

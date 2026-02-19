@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .cursor-none {
+    cursor: none;
+  }
+
+  .dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 5;
+    will-change: left, top, transform, opacity;
+  }
+
+  .kerning-auto {
+    font-kerning: normal;
+    -moz-font-kerning: normal;
+    -webkit-font-kerning: normal;
+    font-feature-settings: "palt", "pkna", "kern";
+    -moz-font-feature-settings: "palt", "pkna", "kern";
+    -webkit-font-feature-settings: "palt", "pkna", "kern";
+    text-spacing-trim: trim-start;
+    letter-spacing: -0.05em;
+  }
+
+  .tight {
+    letter-spacing: -0.2em;
+  }
+
+  .tmp-background {
+    background-color: #b3b3b3;
+  }
+
+  .text-gray-base {
+    color: #232323;
+  }
+
+  .masked {
+    -webkit-mask: radial-gradient(circle at center, transparent 40%, black 41%);
+    mask: radial-gradient(circle at center, transparent 40%, black 41%);
+  }
+
+  .w-full-vw {
+    width: calc(var(--vw) * 100);
+  }
+
+  .clip-inset-full {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+
+  .animate-shutter-fade {
+    animation: fadeOut 0.4s ease forwards 2.4s;
+  }
+
+  .animate-shutter-icon {
+    animation: fadeOut 0.4s ease forwards 1s;
+  }
+
+  .animate-shutter-title {
+    animation: fadeIn 0.8s ease forwards 2s;
+  }
+
+  .animate-shutter-top {
+    animation: openShutterTop 1s ease-in-out forwards 1.4s;
+    will-change: transform;
+  }
+
+  .animate-shutter-bottom {
+    animation: openShutterBottom 1s ease-in-out forwards 1.4s;
+    will-change: transform;
+  }
+
+  @keyframes openShutterTop {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes openShutterBottom {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.font-serifjp {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-feature-settings: "palt", "pkna", "kern";
+}
